@@ -1,11 +1,13 @@
 <%= simple_form_for @user, multipart: true do |f| %> 
 	<div class="row">
 		<div class="span4">
-			<div class="thumbnail">
-				<img src="http://placehold.it/400x400&text=Super+cool+avatar" alt="Super cool avatar">
-				<div class="caption">
-					<%= file_field_tag :avatar_image %>
-				</div>
+			<div class="thumbnail-wrapper">
+    		<%= render 'avatar_image', args: '400x400#', user: @user %>
+		    <div class="caption form-inline">
+		      <%= f.input :retained_avatar_image, as: :hidden %>
+		      <%= f.input :avatar_image, as: :file, label: false %>
+		      <%= f.input :remove_avatar_image, as: :boolean %>
+		    </div>
 			</div>
 		</div>
 		<div class="span8">

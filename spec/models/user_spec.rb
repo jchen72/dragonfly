@@ -27,5 +27,26 @@ describe User do
 
  end
 
+  context "avatar attributes" do
+
+    %w(avatar_image retained_avatar_image remove_avatar_image).each do |attr|
+      it { should respond_to(attr.to_sym) }
+    end
+
+    %w(avatar_image retained_avatar_image remove_avatar_image).each do |attr|
+      it { should allow_mass_assignment_of(attr.to_sym) }
+    end
+
+    it "should validate the file size of the avatar" do
+      user.avatar_image = Rails.root + 'spec/fixtures/huge_size_avatar.jpg'
+      user.should_not be_valid # 200 KB
+    end
+
+    it "should validate the format of the avatar" do
+      user.avatar_image = Rails.root + 'spec/fixtures/dummy.txt'
+      user.should_not be_valid
+    end
+
+  end
 
 end

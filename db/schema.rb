@@ -11,16 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord:Schema.define(:version: 20120206150514) do
+ActiveRecord::Schema.define(:version => 20120212121147) do
 
-  create_table "users", force: true do |t|
+  create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "avatar_image_uid"
+    t.string   "avatar_image_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["email"], :name => "index_users_on_email"
 
 end

@@ -59,5 +59,14 @@ module DragonflyTutorial
       g.test_framework :rspec, fixture: false
       g.stylesheets    false 
     end
+
+    config.middleware.insert 0, 'Rack::Cache', {
+      verbose: true,
+      metastore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"),
+      entitystore: URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+    } unless Rails.env.production?
+
+    config.middleware.insert_after 'Rack::Cache', 'Dragonfly::Middleware', :images
+    
   end
 end

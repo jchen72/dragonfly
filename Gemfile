@@ -7,6 +7,8 @@ gem 'rails', '3.2.1'
 
 gem 'sqlite3'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form.git'
+gem 'rack-cache', require: 'rack/cache'
+gem 'dragonfly', '~>0.9.10'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +23,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails','>=2.0.1'
 
 group :development do
   gem 'faker'
